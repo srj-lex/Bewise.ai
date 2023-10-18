@@ -1,13 +1,25 @@
-from typing import List
+from typing import List, Final
+import os
 
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import Session
 
 from create_table import Question
 
 
+load_dotenv()
+
+USER: Final[str] = os.getenv("POSTGRES_USER", "postgres_user")
+PASSWORD: Final[str] = os.getenv("POSTGRES_PASSWORD", "my_password")
+POSTGRE_DB: Final[str] = os.getenv("POSTGRES_DB", "postgres")
+
+HOST: Final[str] = os.getenv("DB_HOST", "localhost")
+PORT: Final[int] = os.getenv("DB_PORT", 5432)
+
+
 engine = create_engine(
-    "postgresql+psycopg2://bewise_user:mysecretpassword@localhost:8080/bewise"
+    f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{POSTGRE_DB}"
 )
 session = Session(bind=engine)
 

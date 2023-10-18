@@ -9,5 +9,8 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
+  flask:
+    build: flask_project/
+    env_file: .env
     ports:
-      - 8080:5432
+      - 5000:5000
