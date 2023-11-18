@@ -1,4 +1,4 @@
-# Bewise.ai
+# Quiz web-app
 
 ### Описание
 
